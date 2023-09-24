@@ -38,6 +38,9 @@ class RadioFM:
         # Se volume não for none, checa se é menor que o volume máximo
         elif self.volume <= self.volume_max:
             self.volume += up_vol
+        elif self.volume_max < up_vol >= self.volume:
+            self.volume = self.volume_max
+            print("Volume atingio o máximo")
         else:
             print("Volume no máximo!", flush=False)
 
@@ -90,3 +93,20 @@ print(radio1.estação_atual)
 estações.update({100.2: 'Atena 10'})
 caixola = RadioFM(100, estações)
 caixola.antena_habilitada = True
+caixola.mudar_frequencia()
+print(caixola.estação_atual)
+caixola.mudar_frequencia()
+print(caixola.estação_atual)
+caixola.mudar_frequencia()
+print(caixola.estação_atual)
+caixola.mudar_frequencia()
+print(caixola.estação_atual)
+
+radiola = RadioFM(50, estações)
+radiola.antena_habilitada = True
+radiola.mudar_frequencia(102.5)
+radiola.estações.update({102.5: 'Guarani'})
+radiola.mudar_frequencia(102.5)
+print(radiola.estação_atual)
+radiola.aumentar_volume(49)
+radiola.aumentar_volume(100)
