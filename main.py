@@ -38,7 +38,7 @@ class RadioFM:
         # Se volume não for none, checa se é menor que o volume máximo
         elif self.volume <= self.volume_max:
             self.volume += up_vol
-        elif self.volume_max < up_vol >= self.volume:
+        elif self.volume + up_vol > self.volume_max:
             self.volume = self.volume_max
             print("Volume atingio o máximo")
         else:
@@ -49,6 +49,9 @@ class RadioFM:
             self.volume = down_vol if down_vol >= self.volume_min else 0
         elif self.volume >= self.volume_min:
             self.volume -= down_vol
+        elif self.volume - down_vol < self.volume_min:
+            self.volume = self.volume_min
+            print("Volume mínimo atingido!")
         else:
             print("Volume muito baixo!", flush=False)
 
